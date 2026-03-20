@@ -20,7 +20,7 @@ $total_pedidos = count($_SESSION['pedidos']);
 
 <!-- Cabeçalho da página -->
 <header class="page-header">
-    <h1>Painel do Sistema</h1>
+    <h1>Gestão de Pedidos</h1>
     <p>Visão geral do sistema de pedidos</p>
 </header>
 
