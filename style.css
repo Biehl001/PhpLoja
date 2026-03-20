@@ -1,0 +1,748 @@
+/*
+ * ==============================================
+ * ESTILO DO SISTEMA DE PEDIDOS DA LOJA
+ * ==============================================
+ *
+ * Design moderno com glassmorphism, gradientes,
+ * sombras suaves e animações.
+ *
+ * Organização:
+ * 1. Variáveis e Reset
+ * 2. Body e Background
+ * 3. Navbar
+ * 4. Container
+ * 5. Page Header
+ * 6. Dashboard Cards
+ * 7. Card
+ * 8. Seções internas
+ * 9. Tabela
+ * 10. Total
+ * 11. Formulários
+ * 12. Alertas
+ * 13. Footer
+ * 14. Animações
+ * 15. Responsividade
+ */
+
+/* ========================
+   1. VARIÁVEIS E RESET
+   ======================== */
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --primary-glow: rgba(99, 102, 241, 0.25);
+    --secondary: #0ea5e9;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --dark: #0f172a;
+    --dark-soft: #1e293b;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --text-dark: #f8fafc;
+    --bg: #0f172a;
+    --bg-card: rgba(30, 41, 59, 0.7);
+    --bg-card-solid: #1e293b;
+    --border: rgba(148, 163, 184, 0.12);
+    --border-focus: rgba(99, 102, 241, 0.5);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+    --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.15);
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========================
+   2. BODY E BACKGROUND
+   ======================== */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+
+    /* Fundo com gradiente + esferas decorativas */
+    background-image:
+        radial-gradient(ellipse 600px 600px at 10% 10%, rgba(99, 102, 241, 0.15), transparent),
+        radial-gradient(ellipse 500px 500px at 90% 80%, rgba(14, 165, 233, 0.1), transparent),
+        radial-gradient(ellipse 400px 400px at 50% 50%, rgba(16, 185, 129, 0.05), transparent);
+    background-attachment: fixed;
+}
+
+/* ========================
+   3. NAVBAR
+   ======================== */
+.navbar {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 18px 0;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.navbar-brand::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 8px;
+}
+
+.navbar-brand:hover {
+    color: var(--primary-light);
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 2px;
+}
+
+.navbar-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 10px 18px;
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: var(--transition);
+    border-radius: var(--radius-sm);
+    position: relative;
+}
+
+.navbar-links a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.navbar-links a.active {
+    color: #ffffff;
+    background: rgba(99, 102, 241, 0.15);
+}
+
+.navbar-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 3px;
+}
+
+.navbar-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    color: #ffffff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.navbar-toggle:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ========================
+   4. CONTAINER
+   ======================== */
+.container {
+    max-width: 960px;
+    margin: 32px auto;
+    padding: 0 24px;
+}
+
+/* ========================
+   5. PAGE HEADER
+   ======================== */
+.page-header {
+    margin-bottom: 28px;
+}
+
+.page-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+    background: linear-gradient(135deg, #ffffff 0%, var(--text-muted) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-header p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.section-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 28px 0 14px 0;
+}
+
+/* ========================
+   6. DASHBOARD CARDS
+   ======================== */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.dash-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: var(--transition);
+    animation: fadeInUp 0.5s ease both;
+}
+
+.dash-card:nth-child(1) { animation-delay: 0.05s; }
+.dash-card:nth-child(2) { animation-delay: 0.1s; }
+.dash-card:nth-child(3) { animation-delay: 0.15s; }
+
+.dash-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-glow);
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.12);
+}
+
+.dash-card-icon {
+    font-size: 1.8rem;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+}
+
+.clientes-icon {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05));
+    border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.produtos-icon {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.05));
+    border: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+.pedidos-icon {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05));
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.dash-card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.dash-card-numero {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.dash-card-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ========================
+   7. CARD
+   ======================== */
+.card {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+    animation: fadeInUp 0.5s ease both;
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--dark-soft), rgba(30, 41, 59, 0.9));
+    color: #ffffff;
+    padding: 18px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-body {
+    padding: 24px;
+}
+
+/* ========================
+   8. SEÇÕES INTERNAS
+   ======================== */
+.secao {
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 18px;
+}
+
+.secao h3 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary-light);
+    margin-bottom: 10px;
+}
+
+.cliente-nome {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.cliente-email {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ========================
+   9. TABELA
+   ======================== */
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-produtos thead th {
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tabela-produtos thead th:last-child {
+    text-align: right;
+}
+
+.tabela-produtos tbody td {
+    padding: 14px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+.tabela-produtos tbody tr {
+    transition: var(--transition);
+}
+
+.tabela-produtos tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-produtos tbody tr:hover {
+    background: rgba(99, 102, 241, 0.04);
+}
+
+.preco {
+    text-align: right;
+    font-weight: 600;
+    color: var(--success);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ========================
+   10. TOTAL
+   ======================== */
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 22px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(14, 165, 233, 0.08));
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: var(--radius-sm);
+}
+
+.total span:first-child {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.total-valor {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ========================
+   11. FORMULÁRIOS
+   ======================== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    background: rgba(15, 23, 42, 0.5);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-dark);
+    transition: var(--transition);
+    outline: none;
+}
+
+.form-group input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: rgba(148, 163, 184, 0.25);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-glow);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+.form-group select option {
+    background: var(--dark-soft);
+    color: var(--text);
+    padding: 8px;
+}
+
+/* Checkboxes estilizados */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: var(--text);
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.checkbox-label:hover {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.12);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: -0.2px;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.4);
+    transform: translateY(-1px);
+}
+
+/* ========================
+   12. ALERTAS
+   ======================== */
+.alerta {
+    padding: 14px 20px;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.3s ease both;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alerta-sucesso {
+    background: rgba(16, 185, 129, 0.12);
+    color: #6ee7b7;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.alerta-sucesso::before {
+    content: '\2713';
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.alerta-erro {
+    background: rgba(239, 68, 68, 0.12);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.alerta-erro::before {
+    content: '\2717';
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.texto-vazio {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 32px 20px;
+    font-style: italic;
+}
+
+/* ========================
+   13. FOOTER
+   ======================== */
+.footer {
+    text-align: center;
+    padding: 24px 0;
+    margin-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.footer p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* ========================
+   14. ANIMAÇÕES
+   ======================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================
+   15. RESPONSIVIDADE
+   ======================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .dash-card {
+        padding: 18px;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--border);
+        gap: 4px;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .navbar-links a {
+        padding: 12px 16px;
+        border-radius: 8px;
+    }
+
+    .navbar-links a.active::after {
+        display: none;
+    }
+
+    .navbar-container {
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    .container {
+        margin: 20px auto;
+    }
+
+    .page-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .card-header {
+        padding: 14px 18px;
+        font-size: 0.95rem;
+    }
+
+    .card-body {
+        padding: 18px;
+    }
+
+    .total {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        padding: 16px;
+    }
+
+    .total-valor {
+        font-size: 1.3rem;
+    }
+
+    .tabela-produtos {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
